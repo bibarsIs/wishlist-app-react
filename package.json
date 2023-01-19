@@ -12,12 +12,13 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@react-buddy/ide-toolbox": "^2.3.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.1",
     "framer-motion": "^8.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.6.2",
-    "@react-buddy/ide-toolbox": "^2.3.1",
-    "@react-buddy/palette-chakra-ui": "^2.3.1"
+    "react-hook-form": "^7.42.1",
+    "react-router-dom": "^6.6.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

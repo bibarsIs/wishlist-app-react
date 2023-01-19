@@ -4,7 +4,7 @@ import { Center, Container } from '@chakra-ui/react';
 
 export default function RootLayout() {
     return (
-        <Container>
+        <Container maxW='container.md'>
             <Navbar/>
             <Outlet/>
         </Container>
