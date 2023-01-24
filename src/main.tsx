@@ -4,36 +4,37 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { DevSupport } from '@react-buddy/ide-toolbox';
 import { ComponentPreviews, useInitial } from './dev';
 
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
 import Home from './pages/Home';
 import RootLayout from './layouts/RootLayout';
 import { Login } from './pages/Login';
 import Error from './pages/Error';
 import Profile from './pages/Profile';
-
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <RootLayout></RootLayout>,
-        errorElement: <Error />,
-        children: [
-            {index: true, element: <Home />},
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-                path: '/profile',
-                element: <Profile />
-            }
-        ]
-    },
-]);
+import {
+    Outlet,
+    RouterProvider,
+    Link,
+    ReactRouter,
+    createRouteConfig,
+} from '@tanstack/react-router'
 
 
+// tanstack router
+const rootRoute = createRouteConfig({
+    component: RootLayout
+})
+const indexRoute = rootRoute.createRoute({ path: '/', component: Home })
+const loginRoute = rootRoute.createRoute({ path: 'login', component: Login })
+
+const profileRoute = rootRoute.createRoute({ path: 'profile', component: Profile })
+const routeConfig = rootRoute.addChildren([
+    indexRoute,
+    loginRoute,
+    profileRoute,
+])
+
+const router = new ReactRouter({ routeConfig })
+
+// root
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <ChakraProvider>

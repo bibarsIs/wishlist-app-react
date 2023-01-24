@@ -11,7 +11,7 @@ import {
     Link,
     useDisclosure,
 } from '@chakra-ui/react'
-import { Link as RouterLink, NavLink } from 'react-router-dom';
+import { Link as RouterLink } from '@tanstack/react-router';
 import { SignupForm } from './SignupForm';
 
 export default function Navbar() {
@@ -19,25 +19,25 @@ export default function Navbar() {
 
     return (
         <>
-            <Flex as="nav" minWidth="max-content" pt="4" gap='4'>
+            <Flex as="nav" minWidth="max-content" pt="4" gap="4">
                 <Center>
-                    <Link as={ NavLink } to="/" fontSize="2xl">
+                    <Link as={ RouterLink } to="/" fontSize="2xl" search={ true } params={ undefined }>
                         Home
                     </Link>
                 </Center>
                 <Spacer/>
                 <ButtonGroup gap="2">
-                    <Button onClick={onOpen} >Sign Up</Button>
-                    <RouterLink to="/login">
+                    <Button onClick={ onOpen }>Sign Up</Button>
+                    <RouterLink to="/login" search={ undefined } params={ undefined }>
                         <Button colorScheme="teal">Log in</Button>
                     </RouterLink>
                 </ButtonGroup>
-                <Link as={NavLink} to='/profile' fontSize='xl'>
+                <Link as={ RouterLink } to="/profile" fontSize="xl" search={ true } params={ undefined }>
                     Profile
                 </Link>
             </Flex>
 
-            <SignupForm isOpen={isOpen} onClose={onClose} />
+            <SignupForm isOpen={ isOpen } onClose={ onClose }/>
         </>
     )
 }

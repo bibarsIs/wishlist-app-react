@@ -8,7 +8,6 @@ import {
     ModalCloseButton, FormControl, FormLabel, Input, Button, FormHelperText,
 } from '@chakra-ui/react'
 import React from 'react';
-import { Form } from 'react-router-dom';
 
 export function SignupForm({ isOpen, onClose }: {
     isOpen: boolean,
@@ -25,7 +24,7 @@ export function SignupForm({ isOpen, onClose }: {
             <ModalContent>
                 <ModalHeader>Create your account</ModalHeader>
                 <ModalCloseButton/>
-                <Form>
+                <form>
                     <ModalBody pb={ 6 }>
                         <FormControl isRequired>
                             <FormLabel>Email address</FormLabel>
@@ -51,7 +50,7 @@ export function SignupForm({ isOpen, onClose }: {
                         </Button>
                         <Button onClick={ onClose }>Cancel</Button>
                     </ModalFooter>
-                </Form>
+                </form>
             </ModalContent>
         </Modal>
     )
