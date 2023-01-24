@@ -16,6 +16,7 @@ import {
     ReactRouter,
     createRouteConfig,
 } from '@tanstack/react-router'
+import axios from 'axios';
 
 
 // tanstack router
@@ -31,8 +32,13 @@ const routeConfig = rootRoute.addChildren([
     loginRoute,
     profileRoute,
 ])
-
 const router = new ReactRouter({ routeConfig })
+
+// axios config
+axios.defaults.baseURL = 'http://localhost:80';
+axios.defaults.withCredentials = true;
+
+
 
 // root
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
