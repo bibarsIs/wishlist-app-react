@@ -17,6 +17,7 @@ import {
     createRouteConfig,
 } from '@tanstack/react-router'
 import axios from 'axios';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 
 // tanstack router
@@ -39,16 +40,19 @@ axios.defaults.baseURL = 'http://localhost:80';
 axios.defaults.withCredentials = true;
 
 
-
+// tanstack query
+const queryClient = new QueryClient()
 // root
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
-        <ChakraProvider>
-            <DevSupport ComponentPreviews={ ComponentPreviews }
-                        useInitialHook={ useInitial }
-            >
-                <RouterProvider router={router} />
-            </DevSupport>
-        </ChakraProvider>
+        <QueryClientProvider client={ queryClient }>
+            <ChakraProvider>
+                <DevSupport ComponentPreviews={ ComponentPreviews }
+                            useInitialHook={ useInitial }
+                >
+                    <RouterProvider router={ router }/>
+                </DevSupport>
+            </ChakraProvider>
+        </QueryClientProvider>
     </React.StrictMode>,
 )
