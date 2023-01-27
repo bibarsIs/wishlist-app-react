@@ -7,12 +7,9 @@ import { ComponentPreviews, useInitial } from './dev';
 import Home from './pages/Home';
 import RootLayout from './layouts/RootLayout';
 import { Login } from './pages/Login';
-import Error from './pages/Error';
 import Profile from './pages/Profile';
 import {
-    Outlet,
     RouterProvider,
-    Link,
     ReactRouter,
     createRouteConfig,
 } from '@tanstack/react-router'
@@ -38,7 +35,7 @@ const router = new ReactRouter({ routeConfig })
 // axios config
 axios.defaults.baseURL = 'http://localhost:80';
 axios.defaults.withCredentials = true;
-
+// axios.defaults.headers.common['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN')
 
 // tanstack query
 const queryClient = new QueryClient()
