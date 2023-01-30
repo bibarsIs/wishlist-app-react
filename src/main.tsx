@@ -15,12 +15,14 @@ import {
 } from '@tanstack/react-router'
 import axios from 'axios';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Error from './pages/Error';
 
 
 // tanstack router
 const rootRoute = createRouteConfig({
-    component: RootLayout
-})
+    component: RootLayout,
+    errorComponent: Error
+});
 const indexRoute = rootRoute.createRoute({ path: '/', component: Home })
 const loginRoute = rootRoute.createRoute({ path: 'login', component: Login })
 
@@ -30,7 +32,7 @@ const routeConfig = rootRoute.addChildren([
     loginRoute,
     profileRoute,
 ])
-const router = new ReactRouter({ routeConfig })
+export const router = new ReactRouter({ routeConfig })
 
 // axios config
 axios.defaults.baseURL = 'http://localhost:80';

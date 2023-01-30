@@ -18,9 +18,10 @@ export default function Navbar() {
         await axios.post('logout')
     }
 
-    async function clearCache() {
-        await axios.get('api/clear')
-    }
+    // clears cache on the backend.
+    // async function clearCache() {
+    //     await axios.get('api/clear')
+    // }
 
     return (
         <>
@@ -32,7 +33,7 @@ export default function Navbar() {
                 </Center>
                 <Spacer/>
                 <ButtonGroup gap="2">
-                    <Button onClick={clearCache}>Clear</Button>
+                    {/*<Button onClick={clearCache}>Clear</Button>*/}
                     <Button onClick={ onOpen }>Sign Up</Button>
                     <RouterLink to="/login" search={ undefined } params={ undefined }>
                         <Button colorScheme="teal">Log in</Button>

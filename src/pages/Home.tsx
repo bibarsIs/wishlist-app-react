@@ -4,7 +4,7 @@ import { LatestWishlistedKList } from '../components/LatestWishlistedKList';
 
 export default function Home() {
     return (
-        <Container pt="40" maxW='container.md'>
+        <Container mt="20" maxW='container.md'>
             <Heading mb='6'>Latest added wishes</Heading>
             <LatestWishlistedKList/>
         </Container>

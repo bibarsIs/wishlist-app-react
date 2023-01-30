@@ -1,8 +1,8 @@
-import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Flex, Avatar, Spacer, Box } from '@chakra-ui/react'
-import { wishListItem } from './LatestWishlistedKList'
+import { Card, CardHeader, CardBody, Heading, Text, Flex, Avatar, Box } from '@chakra-ui/react'
+import { WishListItemType } from './LatestWishlistedKList'
 
 export function WishlistItem({ children: item }: {
-    children: wishListItem
+    children: WishListItemType
 }) {
     return (
         <Card>
