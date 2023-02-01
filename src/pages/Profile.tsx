@@ -5,19 +5,20 @@ import { WishListItemType } from '../components/LatestWishlistedKList';
 import { Heading } from '@chakra-ui/layout';
 import { WishlistItemInProfile } from '../components/WishlistItemInProfile';
 import { router } from '../main';
+import { Simulate } from 'react-dom/test-utils';
+import error = Simulate.error;
 
 export default function Profile() {
     const userWishlistItemsQuery = useQuery({
-        queryKey: ['userWishlistItems'],
-        queryFn: async () => {
-            try {
-                const response = await axios.get('api/user/items')
-                return response.data as WishListItemType[]
-            } catch (e) {
-                await router.navigate({ to: '/login' })
+            queryKey: ['userWishlistItems'],
+            queryFn: (): Promise<WishListItemType[]> => {
+                return axios
+                    .get('api/user/items')
+                    .then(response => response.data)
+                    .catch(error => router.navigate({ to: '/login' }))
             }
         }
-    })
+    )
 
     if (userWishlistItemsQuery.isLoading) return (
         <>
@@ -25,9 +26,6 @@ export default function Profile() {
             <Spinner size="xl"/>
         </>
     );
-    // else if (userWishlistItemsQuery.isError) return (
-    //     <Text>Error: Log in to view your profile.</Text>
-    // );
     else if (userWishlistItemsQuery.isError) return <pre>{ JSON.stringify(userWishlistItemsQuery.error) }</pre>
 
     return (
