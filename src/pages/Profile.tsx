@@ -1,12 +1,11 @@
-import { Box, Container, Spinner, VStack } from '@chakra-ui/react';
+import { Box, Container, Spinner, useToast, VStack } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { WishListItemType } from '../components/LatestWishlistedKList';
 import { Heading } from '@chakra-ui/layout';
 import { WishlistItemInProfile } from '../components/WishlistItemInProfile';
-import { router } from '../main';
 import { Simulate } from 'react-dom/test-utils';
-import error = Simulate.error;
+import { redirect } from 'react-router-dom';
 
 export default function Profile() {
     const userWishlistItemsQuery = useQuery({
@@ -15,7 +14,9 @@ export default function Profile() {
                 return axios
                     .get('api/user/items')
                     .then(response => response.data)
-                    .catch(error => router.navigate({ to: '/login' }))
+                    .catch(error => {
+                        return redirect('/login')
+                    })
             }
         }
     )

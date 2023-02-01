@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, Heading, useToast } from '@chakra-ui/react'
 import { DevSupport } from '@react-buddy/ide-toolbox';
 import { ComponentPreviews, useInitial } from './dev';
 
@@ -8,17 +8,17 @@ import Home from './pages/Home';
 import RootLayout from './layouts/RootLayout';
 import { Login } from './pages/Login';
 import Profile from './pages/Profile';
-import {
-    RouterProvider,
-    ReactRouter,
-    createRouteConfig,
-} from '@tanstack/react-router'
 import axios from 'axios';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Error from './pages/Error';
+import {
+    createBrowserRouter, createRoutesFromElements, redirect, Route,
+    RouterProvider,
+} from 'react-router-dom';
 
 
 // tanstack router
+/*
 const rootRoute = createRouteConfig({
     component: RootLayout,
     errorComponent: Error
@@ -33,6 +33,27 @@ const routeConfig = rootRoute.addChildren([
     profileRoute,
 ])
 export const router = new ReactRouter({ routeConfig })
+*/
+
+// react router
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={ <RootLayout/> }>
+            <Route index element={ <Home/> }/>
+            <Route path="login" element={ <Login/> }/>
+            <Route path="profile" element={ <Profile/> }
+                   loader={
+                       () => axios.get('api/user/items')
+                           .then(response => response.data)
+                           .catch(error => {
+                               return redirect('/login')
+                           })
+                   }
+            />
+            <Route path="*" element={ <Error/> }/>
+        </Route>
+    )
+);
 
 // axios config
 axios.defaults.baseURL = 'http://localhost:80';

@@ -7,7 +7,7 @@ import {
     Link,
     useDisclosure,
 } from '@chakra-ui/react'
-import { Link as RouterLink } from '@tanstack/react-router';
+import { Link as RouterLink } from 'react-router-dom';
 import { SignupForm } from './SignupForm';
 import axios from 'axios';
 
@@ -27,7 +27,7 @@ export default function Navbar() {
         <>
             <Flex as="nav" minWidth="max-content" pt="4" gap="4">
                 <Center>
-                    <Link as={ RouterLink } to="/" fontSize="2xl" search={ true } params={ undefined }>
+                    <Link as={ RouterLink } to="/" fontSize="2xl">
                         Home
                     </Link>
                 </Center>
@@ -35,13 +35,13 @@ export default function Navbar() {
                 <ButtonGroup gap="2">
                     {/*<Button onClick={clearCache}>Clear</Button>*/}
                     <Button onClick={ onOpen }>Sign Up</Button>
-                    <RouterLink to="/login" search={ undefined } params={ undefined }>
+                    <RouterLink to="/login">
                         <Button colorScheme="teal">Log in</Button>
                     </RouterLink>
                     <Button onClick={ SignOut }>Sign out</Button>
 
                 </ButtonGroup>
-                <Link as={ RouterLink } to="/profile" fontSize="xl" search={ true } params={ undefined }>
+                <Link as={ RouterLink } to="/profile" fontSize="xl">
                     Profile
                 </Link>
             </Flex>

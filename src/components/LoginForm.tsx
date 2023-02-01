@@ -13,8 +13,6 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SignupForm } from './SignupForm';
 import axios from 'axios';
-import { RegisteredRouter, useRouter } from '@tanstack/react-router';
-
 
 type Inputs = {
     email: string,
@@ -35,8 +33,6 @@ export function LoginForm() {
                 password: data.password
             }).then(response => {
                 if (response.status === 204) {
-                    const router: RegisteredRouter = useRouter()
-                    router.navigate({ to: '/profile' })
                 }
             })
         });
