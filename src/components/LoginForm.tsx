@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SignupForm } from './SignupForm';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
     email: string,
@@ -24,8 +25,10 @@ export function LoginForm() {
 
     const [isLoggingIn, setIsLoggingIn] = useState(false);
 
+    const navigate = useNavigate();
+
     // todo rewrite with tanstack query
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async data => {
         axios.get('/sanctum/csrf-cookie').then(response => {
             axios.post('/login', {
@@ -33,6 +36,7 @@ export function LoginForm() {
                 password: data.password
             }).then(response => {
                 if (response.status === 204) {
+                    navigate(0)
                 }
             })
         });

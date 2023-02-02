@@ -22,7 +22,7 @@ export function SignupForm({ isOpen, onClose }: {
         password: string,
         passwordConfirmation: string
     };
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async data => {
         const res = await axios.post('/register',
             {
@@ -34,7 +34,6 @@ export function SignupForm({ isOpen, onClose }: {
             {
                 headers: { 'Content-Type': 'application/json' }
             })
-        console.log(res.data)
     };
 
     return (
